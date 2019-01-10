@@ -67,15 +67,15 @@ vector<string> Vehicle::successor_states() {
     vector<string> states;
     states.push_back("KL");
     string state = this->state;
-    if(state.compare("KL") == 0) {
-        states.push_back("PLCL");
+    if(state.compare("KL") == 0) {  //If KL = 0 then 
+        states.push_back("PLCL");   //states = KL, PLCL, PLCR
         states.push_back("PLCR");
-    } else if (state.compare("PLCL") == 0) {
+    } else if (state.compare("PLCL") == 0) {  //if PLCL = 0 states = KL, PLCL, LCL if lane not equal to lanes_available -1
         if (lane != lanes_available - 1) {
             states.push_back("PLCL");
             states.push_back("LCL");
         }
-    } else if (state.compare("PLCR") == 0) {
+    } else if (state.compare("PLCR") == 0) {//if preparing right, go to prepare right, lane change right
         if (lane != 0) {
             states.push_back("PLCR");
             states.push_back("LCR");
